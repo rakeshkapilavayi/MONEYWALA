@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Wala - Seamless Money Exchange</title>
+    <link rel="stylesheet" href="styles/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="box box-1"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+            <div class="box box-2"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+            <div class="box box-3"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+            <div class="box box-4"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container" id="logo-toggle">
+                <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+            </div>
+            <div class="location-search-container">
+                <div class="search-bar">
+                    <i class="fas fa-map-marker-alt search-icon"></i>
+                    <input type="text" id="location-search" placeholder="Enter location..." class="search-input">
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="location-dropdown" id="location-dropdown" style="display: none;">
+                    <div class="current-location">
+                        <i class="fas fa-crosshairs"></i>
+                        <span>Use current location</span>
+                    </div>
+                    <div class="popular-locations">
+                        <h4>Popular Locations</h4>
+                        <ul id="location-suggestions"></ul>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="notifications.html" class="nav-item notification-icon"><i class="fas fa-bell"></i></a>
+                <a href="chat.html" class="nav-item message-icon"><i class="fas fa-comment"></i></a>
+                <a href="signup.html" id="signup" class="nav-item btn-login">Sign In</a>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <!-- Signed-Out Welcome Section -->
+        <section class="welcome-section signed-out">
+            <div class="welcome-content">
+                <div class="welcome-grid">
+                    <!-- Top Left: What is Money Wala -->
+                    <div class="welcome-text">
+                        <div class="words word-1">
+                            <span>W</span>
+                            <span>H</span>
+                            <span>A</span>
+                            <span>T</span>
+                        </div>
+                        <div class="words word-2">
+                            <span>I</span>
+                            <span>S</span>
+                        </div>
+                        <div class="words word-3">
+                            <span>M</span>
+                            <span>O</span>
+                            <span>N</span>
+                            <span>E</span>
+                            <span>Y</span>
+                            <span>W</span>
+                            <span>A</span>
+                            <span>L</span>
+                            <span>A</span>
+                        </div>
+                        <p class="welcome-subtitle">- Your trusted platform for seamless money exchange, connecting you with verified users for fast, secure, and convenient transactions.</p>
+                    </div>
+                    <!-- Top Right: Home Photo -->
+                    <div class="welcome-image">
+                        <img src="pictures/homephoto.jpg" alt="Money Wala Welcome" class="home-photo">
+                    </div>
+                    <!-- Bottom Left: Seamless Money Exchange -->
+                    <div class="exchange-info">
+                        <h3>Seamless Money Exchange</h3>
+                        <p>Money Wala revolutionizes the way you exchange money, offering a secure and efficient platform to convert cash to digital payments or vice versa. Connect with verified users within a 5 km radius for real-time, hassle-free transactions. Our advanced encryption ensures your deals are safe, while our intuitive interface makes the process effortless. Whether you're traveling, managing daily expenses, or need quick liquidity, Money Wala is your go-to solution. Join our trusted community today and experience unparalleled financial flexibility with 24/7 support and transparent user ratings.</p>
+                    </div>
+                    <!-- Bottom Right: Rotating Coin -->
+                    <div class="coin-container">
+                        <div class="coin">
+                            <div class="side heads">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="50" fill="#FFD700"/>
+                                    <text x="50" y="70" font-size="60" fill="#4B2E00" text-anchor="middle" font-family="Arial, sans-serif">₹</text>
+                                </svg>
+                            </div>
+                            <div class="side tails">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg_back" width="100%" height="100%" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="50" fill="#FFD700"/>
+                                    <text x="50" y="70" font-size="60" fill="#4B2E00" text-anchor="middle" font-family="Arial, sans-serif">₹</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signed-In Dashboard -->
+        <section class="dashboard signed-in" style="display: none;">
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-item active" data-section="overview"><i class="fas fa-home"></i> Dashboard</div>
+                <div class="sidebar-item" id="exchange-link"><i class="fas fa-exchange-alt"></i> Exchange</div>
+                <div class="sidebar-item" data-section="wallet"><i class="fas fa-wallet"></i> <a href="wallet.html">Wallet</a></div>
+                <div class="sidebar-item" data-section="profile"><i class="fas fa-user"></i> <a href="profile.html">Profile</a></div>
+            </div>
+            <div class="dashboard-content">
+                <div class="content-section active" id="overview">
+                    <div class="dashboard-header">
+                        <h2>Welcome, <span id="user-name">User</span>!</h2>
+                        <p>Your hub for seamless money exchanges.</p>
+                    </div>
+                    <div class="dashboard-main">
+                        <!-- Exchange Now Widget -->
+                        <div class="exchange-widget glass-card" id="exchange-widget" style="pointer-events: none; opacity: 0.6;">
+                            <h3>Exchange Now</h3>
+                            <div class="exchange-form">
+                                <select class="input-select" id="exchange-type">
+                                    <option value="cash-to-digital">Cash to Digital</option>
+                                    <option value="digital-to-cash">Digital to Cash</option>
+                                </select>
+                                <input type="number" class="input-field" placeholder="Enter Amount (₹)" min="1">
+                                <button class="btn-primary exchange-btn">Find Matches</button>
+                            </div>
+                            <p class="exchange-hint">Real-time matches within 5 km</p>
+                        </div>
+
+                        <!-- Live Matches Feed -->
+                        <div class="live-matches glass-card" id="live-matches" style="pointer-events: none; opacity: 0.6;">
+                            <h3>Nearby Exchange Matches</h3>
+                            <div class="filter-bar">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="cash">Cash</button>
+                                <button class="filter-btn" data-filter="digital">Digital</button>
+                            </div>
+                            <div class="matches-list">
+                                <div class="match-item">
+                                    <div class="match-info">
+                                        <span class="match-name">Ravi K.</span>
+                                        <span class="match-amount">₹500 (Cash)</span>
+                                    </div>
+                                    <button class="btn-secondary connect-btn" onclick="window.location.href='chat.html'">Connect</button>
+                                </div>
+                                <div class="match-item">
+                                    <div class="match-info">
+                                        <span class="match-name">Priya S.</span>
+                                        <span class="match-amount">₹1000 (UPI)</span>
+                                    </div>
+                                    <button class="btn-secondary connect-btn" onclick="window.location.href='chat.html'">Connect</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wallet & Insights -->
+                        <div class="wallet-insights glass-card">
+                            <h3>Your Wallet</h3>
+                            <div class="wallet-balance">
+                                <p><i class="fas fa-money-bill-wave"></i> Cash: <span id="cash-balance">₹1500</span></p>
+                                <p><i class="fas fa-mobile-alt"></i> Digital: <span id="digital-balance">₹3200</span></p>
+                            </div>
+                            <div class="insights">
+                                <p><i class="fas fa-chart-line"></i> This Month: 8 Exchanges</p>
+                                <p><i class="fas fa-star"></i> Rating: 4.8</p>
+                            </div>
+                            <button class="btn-secondary" onclick="window.location.href='wallet.html'">Manage Wallet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section (Signed-Out) -->
+        <section id="features" class="features-section signed-out">
+            <div class="container">
+                <h2>Why Money Wala?</h2>
+                <p class="section-subtitle">Fast. Secure. Local.</p>
+                <div class="features-grid">
+                    <div class="glass-card feature-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Instant Matching</h3>
+                        <p>Find exchange partners nearby in real-time.</p>
+                    </div>
+                    <div class="glass-card feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Secure Transactions</h3>
+                        <p>Encrypted deals with user-verified ratings.</p>
+                    </div>
+                    <div class="glass-card feature-card">
+                        <i class="fas fa-map-pin"></i>
+                        <h3>Location-Based</h3>
+                        <p>Connect locally, exchange globally.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (Signed-Out) -->
+        <section class="testimonials-section signed-out">
+            <div class="container">
+                <h2>Hear From Our Users</h2>
+                <p class="section-subtitle">Real stories, real results.</p>
+                <div class="testimonials-grid">
+                    <div class="glass-card testimonial-card">
+                        <p>"Swapped ₹1000 in minutes—super easy!"</p>
+                        <h4>- Priya S.</h4>
+                    </div>
+                    <div class="glass-card testimonial-card">
+                        <p>"The best way to handle cash and UPI."</p>
+                        <h4>- Anil K.</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Money Wala</h3>
+                        <p>Simplifying money exchange for everyone.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Links</h3>
+                        <a href="about.html">About</a>
+                        <a href="signup.html">Sign Up</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-phone"></i> +91-9010047744</p>
+                        <p><i class="fas fa-envelope"></i> moneywala@gmail.com</p>
+                    </div>
+                    <div class="footer-section social-links">
+                        <h3>Follow Us</h3>
+                        <a href="https://x.com/Rakeshkapilavai"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/rakeshkapilavayi"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/rakeshkapilavai"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <p class="footer-bottom">© 2025 Money Wala. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="scripts/home.js"></script>
+</body>
+</html>

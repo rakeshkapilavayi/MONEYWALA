@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .user-card {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .user-card img {
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .user-card h2 {
+            margin: 5px 0;
+        }
+        .user-card p {
+            margin: 0;
+            color: #555;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-card" id="userCard">
+        <img id="userPhoto" src="" alt="User Photo" width="100">
+        <h2 id="userName">Name</h2>
+        <p id="userEmail">Email</p>
+        <p id="userLocation">Location</p>
+    </div>
+    <button id="generateUserBtn">Generate Random User</button>
+
+    <script>
+        const userPhoto = document.getElementById('userPhoto');
+        const userName = document.getElementById('userName');
+        const userEmail = document.getElementById('userEmail');
+        const userLocation = document.getElementById('userLocation');
+        const generateUserBtn = document.getElementById('generateUserBtn');
+
+        async function fetchRandomUser() {
+            try {
+                const response = await fetch('https://randomuser.me/api/?nat=IN'); // Indian nationality
+                const data = await response.json();
+                const user = data.results[0];
+
+                // Update UI with user details
+                userPhoto.src = user.picture.large;
+                userName.textContent = `${user.name.first} ${user.name.last}`;
+                userEmail.textContent = `${user.name.first}${user.name.last}@gmail.com`.toLowerCase();
+                userLocation.textContent = `${user.location.city}, ${user.location.country}`;
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                alert('Could not fetch a random user. Please try again later.');
+            }
+        }
+
+        generateUserBtn.addEventListener('click', fetchRandomUser);
+
+        // Fetch a user on initial load
+        fetchRandomUser();
+    </script>
+</body>
+</html>

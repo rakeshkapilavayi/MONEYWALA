@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Wala - Wallet</title>
+    <link rel="stylesheet" href="styles/wallet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container" id="logo-toggle">
+            <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+            <h1 class="title" id="interactive-title"></h1>
+        </div>
+        <nav class="nav-menu">
+            <a href="money-wala.html" class="nav-item">Features</a>
+            <a href="about.html" class="nav-item">About</a>
+            <a href="money-wala.html" class="nav-item btn-login">Dashboard</a>
+        </nav>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-item" data-section="overview"><i class="fas fa-home"></i> Dashboard</div>
+        <div class="sidebar-item" id="exchange-link"><i class="fas fa-exchange-alt"></i> Exchange</div>
+        <div class="sidebar-item active" data-section="wallet"><i class="fas fa-wallet"></i> <a href="wallet.html">Wallet</a></div>
+        <div class="sidebar-item" id="sign-out-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</div>
+    </div>
+
+    <!-- Wallet Section -->
+    <main class="wallet-container">
+        <h2>Your Wallet</h2>
+        <p class="subtitle">Manage your cash and digital balances.</p>
+        <div class="wallet-content glass-card">
+            <div class="balance-section">
+                <div class="balance-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Cash Balance</h3>
+                    <p id="cash-balance"></p>
+                    <button class="btn-secondary add-funds-btn" data-type="cash">Add Cash</button>
+                    <button class="btn-secondary remove-funds-btn" data-type="cash">Remove Cash</button>
+                </div>
+                <div class="balance-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Digital Balance</h3>
+                    <p id="digital-balance"></p>
+                    <button class="btn-secondary add-funds-btn" data-type="digital">Add Digital</button>
+                    <button class="btn-secondary remove-funds-btn" data-type="digital">Remove Digital</button>
+                </div>
+            </div>
+            <div class="transaction-history">
+                <h3>Transaction History</h3>
+                <ul class="history-list">
+                </ul>
+            </div>
+        </div>
+
+        <!-- Add Funds Modal (Hidden by Default) -->
+        <div class="modal" id="add-funds-modal">
+            <div class="modal-content glass-card">
+                <h3>Add Funds</h3>
+                <form id="add-funds-form">
+                    <div class="form-group">
+                        <label for="fund-type">Type:</label>
+                        <span id="fund-type-display">Cash</span>
+                        <input type="hidden" id="fund-type" value="cash">
+                    </div>
+                    <div class="form-group">
+                        <label for="fund-amount">Amount (₹):</label>
+                        <input type="number" id="fund-amount" class="input-field" min="1" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Add Funds</button>
+                        <button type="button" class="btn-secondary cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Money Wala</h3>
+                    <p>Simplifying money exchange for everyone.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <a href="money-wala.html#features">Features</a>
+                    <a href="about.html">About</a>
+                    <a href="signup.html">Sign Up</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> +91-9010047744</p>
+                    <p><i class="fas fa-envelope"></i> moneywala@gmail.com</p>
+                </div>
+                <div class="footer-section social-links">
+                    <h3>Follow Us</h3>
+                    <a href="https://x.com/Rakeshkapilavai"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/rakeshkapilavayi"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/rakeshkapilavai"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <p class="footer-bottom">© 2025 Money Wala. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="scripts/wallet.js"></script>
+</body>
+</html>

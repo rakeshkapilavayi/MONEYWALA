@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Money Wala</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/profile.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <h2>Loading your profile...</h2>
+    </div>
+
+    <div id="main-content">
+        <header class="header">
+            <div class="logo-container">
+                <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+                <h1 class="title" id="interactive-title"></h1>
+            </div>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <select id="language-select">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="mr">मराठी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+                <button id="logout-btn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <div class="profile-container">
+            <div class="profile-header animate-fade">
+                <h1>Your Profile</h1>
+                <a href="money-wala.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+
+            <div class="profile-card animate-fade">
+                <div class="profile-card-header">
+                    <h2>Personal Information</h2>
+                    <button class="edit-btn" onclick="toggleEditForm()">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+
+                <div class="profile-info-container">
+                    <div class="profile-picture">
+                        <img id="profile-pic" src="pictures/images (12).jpeg" alt="Profile Picture">
+                        <div class="edit-pic-btn" onclick="document.getElementById('profile-pic-input').click()">
+                            <i class="fas fa-camera"></i> Change
+                        </div>
+                        <input type="file" id="profile-pic-input" accept="image/*" style="display: none;">
+                    </div>
+                    <h3 class="profile-name" id="user-name">Loading...</h3>
+                    <p class="profile-email" id="user-email">Loading...</p>
+                    <span class="profile-status">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </span>
+                </div>
+
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Username</div>
+                        <div class="detail-value" id="user-username">Not set</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Phone Number</div>
+                        <div class="detail-value" id="user-phone">Not set</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value" id="user-location">Not set</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Member Since</div>
+                        <div class="detail-value" id="user-join-date">Loading...</div>
+                    </div>
+                </div>
+
+                <form id="editForm" class="edit-form">
+                    <div class="form-group">
+                        <label for="edit-username" class="form-label">Username</label>
+                        <input type="text" id="edit-username" class="form-control" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="edit-phone" class="form-control" placeholder="Enter phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Set Your Location</label>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086!2d-122.4194!3d37.7749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ2JzI5LjciTiAxMjLCsDI1JzA5LjgiVw!5e0!3m2!1sen!2sus!4v1600000000000" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Help</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p class="footer-copyright">© 2025 Money Wala. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="scripts/profile.js"></script>
+</body>
+</html>

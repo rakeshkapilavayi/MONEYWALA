@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Moneywala</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/about.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" style="text-align: center; padding: 50px; display: none;">
+        <h2>Loading...</h2>
+    </div>
+
+    <!-- Main Content (Hidden Until Logged In) -->
+    <div id="main-content" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container" id="logo-toggle">
+                <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+                <h1 class="title" id="interactive-title"></h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="money-wala.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="exchange.html" class="nav-item">Exchange</a>
+                <span id="auth-link" class="nav-item btn-login">Sign Out</span>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-item" data-section="overview"><i class="fas fa-home"></i> Overview</div>
+            <div class="sidebar-item" id="exchange-link"><i class="fas fa-exchange-alt"></i> Exchange</div>
+            <div class="sidebar-item" data-section="profile"><i class="fas fa-user"></i> Profile</div>
+            <div class="sidebar-item" data-section="notifications"><i class="fas fa-bell"></i> Notifications <span class="badge">3</span></div>
+            <div class="sidebar-item" id="sign-out-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</div>
+        </div>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <h2>About Moneywala</h2>
+                <p class="intro">
+                    At Moneywala, we’re transforming the way people manage, grow, and secure their finances with cutting-edge technology and personalized solutions.
+                </p>
+                <div class="content-grid">
+                    <div class="card">
+                        <h3>Our Mission</h3>
+                        <p>
+                            To empower individuals and businesses with seamless financial tools that simplify money management and unlock new opportunities.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Our Vision</h3>
+                        <p>
+                            A world where everyone has the confidence and resources to achieve financial freedom.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Who We Are</h3>
+                        <p>
+                            A passionate team of financial experts, developers, and innovators committed to redefining wealth management.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section (From Left) -->
+        <section class="story-section">
+            <div class="container">
+                <h2>Our Inspiration</h2>
+                <p>
+                    One day, I witnessed a friend struggling with a money issue. He needed cash to buy food and essentials but only had money in his UPI wallet. At the same time, another person nearby needed UPI funds but only had cash. Both searched their locality for help, but no one could assist. After hours of struggle, they finally met, exchanged their money, and resolved their issues. This experience highlighted the challenges people face in urgent situations when they can’t find the right mode of payment. Inspired by their struggle, we created Moneywala—a platform that connects people to exchange UPI and cash seamlessly, ensuring no one faces such difficulties again.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section (From Right) -->
+        <section class="features-section">
+            <div class="container">
+                <h2>Features of Moneywala</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Easy Navigation</h3>
+                        <p>Intuitive menus and clear links make finding what you need effortless.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>User-Friendly Interface</h3>
+                        <p>A clean, simple design ensures a smooth experience for all users.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Safe & Secure Transactions</h3>
+                        <p>Robust security measures protect every exchange you make.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Reduces Time</h3>
+                        <p>Quickly find and connect with users for fast exchanges.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Rating & Reviews</h3>
+                        <p>Build trust by rating and reviewing other users after exchanges.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>No Ads</h3>
+                        <p>Enjoy a distraction-free experience with no advertisements.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Direct Interaction</h3>
+                        <p>Communicate directly with other users to coordinate exchanges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section (From Left) -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2>Benefits of Using Moneywala</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>Easy Exchange of Money</h3>
+                        <p>Seamlessly swap UPI funds for cash or vice versa with nearby users.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Simple UI</h3>
+                        <p>A straightforward interface makes exchanging money hassle-free.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>No Middlemen</h3>
+                        <p>Direct exchanges mean no extra fees or intermediaries.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Verified Users</h3>
+                        <p>Interact with trusted, verified users for safe transactions.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Reduces Time</h3>
+                        <p>Find exchange partners quickly, saving you valuable time.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Feedback System</h3>
+                        <p>Provide and receive feedback to improve the community experience.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Ads-Free Experience</h3>
+                        <p>Focus on your exchanges without annoying ads.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Direct Communication</h3>
+                        <p>Chat directly with users to arrange exchanges efficiently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section (From Right) -->
+        <section class="security-section">
+            <div class="container">
+                <h2>Security at Moneywala</h2>
+                <div class="security-grid">
+                    <div class="security-card">
+                        <h3>User Authentication & Authorization</h3>
+                        <p>Secure login ensures only authorized users access the platform.</p>
+                    </div>
+                    <div class="security-card">
+                        <h3>HTTPS Data Encryption</h3>
+                        <p>All data is encrypted to protect your information during exchanges.</p>
+                    </div>
+                    <div class="security-card">
+                        <h3>Two-Factor Authentication</h3>
+                        <p>Add an extra layer of security with 2FA for your account.</p>
+                    </div>
+                    <div class="security-card">
+                        <h3>Data Privacy</h3>
+                        <p>Your personal information is kept private and secure.</p>
+                    </div>
+                    <div class="security-card">
+                        <h3>Report/Block System</h3>
+                        <p>Easily report or block users to maintain a safe community.</p>
+                    </div>
+                    <div class="security-card">
+                        <h3>API Security</h3>
+                        <p>Our APIs are protected to prevent unauthorized access.</p>
+                    </div>
+                    <div class="security-card">
+                        <h3>Admin Dashboard Security</h3>
+                        <p>Admins have secure access to manage the platform safely.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2025 Moneywala. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAk-7v8sSnYSe_DSegU5SAfeHoE5ZEdYsU",
+            authDomain: "money-wala-9f96b.firebaseapp.com",
+            projectId: "money-wala-9f96b",
+            storageBucket: "money-wala-9f96b.firebasestorage.app",
+            messagingSenderId: "857060971333",
+            appId: "1:857060971333:web:1d6e6c8c7a5e017700e42c",
+            measurementId: "G-2TVQ7STTW9"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Enable Offline Persistence
+        db.enablePersistence()
+            .then(() => console.log('Offline persistence enabled'))
+            .catch((error) => console.warn('Offline persistence failed:', error));
+
+        // Elements
+        const loadingScreen = document.getElementById('loading-screen');
+        const mainContent = document.getElementById('main-content');
+        const authLink = document.getElementById('auth-link');
+        const logoToggle = document.getElementById('logo-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        // Sidebar Toggle State
+        let isSidebarVisible = localStorage.getItem('isSidebarVisible') === 'true';
+
+        // Show loading screen initially
+        loadingScreen.style.display = 'block';
+        mainContent.style.display = 'none';
+
+        // Check Auth State
+        auth.onAuthStateChanged((user) => {
+            loadingScreen.style.display = 'none'; // Hide loading screen
+
+            if (user) {
+                mainContent.style.display = 'block'; // Show main content
+                authLink.textContent = 'Sign Out';
+                authLink.href = '#';
+                sidebar.classList.add('hidden');
+                if (isSidebarVisible) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('visible');
+                }
+                authLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    auth.signOut().then(() => {
+                        localStorage.setItem('isSidebarVisible', 'false');
+                        window.location.href = 'money-wala.html';
+                    }).catch((error) => alert('Error: ' + error.message));
+                });
+
+                document.getElementById('sign-out-btn').addEventListener('click', () => {
+                    auth.signOut().then(() => {
+                        localStorage.setItem('isSidebarVisible', 'false');
+                        window.location.href = 'money-wala.html';
+                    });
+                });
+            } else {
+                mainContent.style.display = 'none'; // Hide main content if not logged in
+                window.location.href = 'signup.html'; // Redirect to signup
+            }
+        });
+
+        // Logo Toggle for Sidebar
+        logoToggle.addEventListener('click', () => {
+            if (auth.currentUser) {
+                if (isSidebarVisible) {
+                    sidebar.classList.remove('visible');
+                    sidebar.classList.add('hidden');
+                    isSidebarVisible = false;
+                } else {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('visible');
+                    isSidebarVisible = true;
+                }
+                localStorage.setItem('isSidebarVisible', isSidebarVisible);
+            }
+        });
+
+        // Sidebar Navigation
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.id === 'sign-out-btn') return;
+                if (e.target.id === 'exchange-link') {
+                    window.location.href = 'exchange.html';
+                    return;
+                }
+                if (e.target.getAttribute('data-section') === 'overview') {
+                    window.location.href = 'money-wala.html';
+                } else if (e.target.getAttribute('data-section') === 'profile') {
+                    window.location.href = 'profile.html';
+                } else if (e.target.getAttribute('data-section') === 'notifications') {
+                    window.location.href = 'notifications.html';
+                }
+            });
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Scroll Animation for Sections
+        const sections = document.querySelectorAll('.story-section, .features-section, .benefits-section, .security-section');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Add to your existing JavaScript (e.g., scripts/chat.js or a new script)
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleElement = document.getElementById('interactive-title');
+            const titleText = 'Money Wala';
+            titleElement.innerHTML = ''; // Clear content
+
+            // Split text into spans
+            titleText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char; // Handle spaces
+                span.style.animationDelay = `${index * 0.1}s`; // Delay each character
+                titleElement.appendChild(span);
+            });
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        
+    </script>
+</body>
+</html>

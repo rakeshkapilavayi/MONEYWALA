@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Wala - Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/chat.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container" id="logo-toggle">
+            <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+            <div class="location-search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="chat-search" placeholder="Search chats..." class="search-input">
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <a href="notifications.html" class="nav-item notification-icon"><i class="fas fa-bell"></i></a>
+            <a href="chat.html" class="nav-item message-icon active"><i class="fas fa-comment"></i></a>
+            <a id="auth-link" href="signup.html" class="nav-item btn-login">Sign In</a>
+        </nav>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Main Chat Container -->
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="channel-list" id="channel-list">
+                <div class="channel active" data-name="Ravi Kumar">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi" class="channel-avatar">
+                    <div class="channel-info">
+                        <div class="channel-name">Ravi Kumar</div>
+                        <div class="channel-last-msg">Hey, ready for the exchange?</div>
+                    </div>
+                    <div class="channel-meta">
+                        <div class="channel-time">2 min</div>
+                        <div class="channel-unread">2</div>
+                    </div>
+                </div>
+                <div class="channel" data-name="Priya Sharma">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Priya" class="channel-avatar">
+                    <div class="channel-info">
+                        <div class="channel-name">Priya Sharma</div>
+                        <div class="channel-last-msg">Thanks for the quick swap!</div>
+                    </div>
+                    <div class="channel-meta">
+                        <div class="channel-time">1 hr</div>
+                    </div>
+                </div>
+                <div class="channel" data-name="Amit Patel">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Amit" class="channel-avatar">
+                    <div class="channel-info">
+                        <div class="channel-name">Amit Patel</div>
+                        <div class="channel-last-msg">Can we do ₹2000 tomorrow?</div>
+                    </div>
+                    <div class="channel-meta">
+                        <div class="channel-time">3 hr</div>
+                    </div>
+                </div>
+                <div class="channel" data-name="Neha Gupta">
+                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Neha" class="channel-avatar">
+                    <div class="channel-info">
+                        <div class="channel-name">Neha Gupta</div>
+                        <div class="channel-last-msg">Received the payment, thanks!</div>
+                    </div>
+                    <div class="channel-meta">
+                        <div class="channel-time">Yesterday</div>
+                    </div>
+                </div>
+                <div class="channel" data-name="Raj Mehta">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Raj" class="channel-avatar">
+                    <div class="channel-info">
+                        <div class="channel-name">Raj Mehta</div>
+                        <div class="channel-last-msg">Let me know when you're free</div>
+                    </div>
+                    <div class="channel-meta">
+                        <div class="channel-time">Yesterday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <div class="chat-header">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi" class="chat-header-avatar">
+                <div class="chat-header-info">
+                    <div class="chat-header-name">Ravi Kumar</div>
+                    <div class="chat-header-status">Online</div>
+                </div>
+                <div class="chat-header-actions">
+                    <div class="chat-header-btn"><i class="fas fa-phone"></i></div>
+                    <div class="chat-header-btn"><i class="fas fa-video"></i></div>
+                    <div class="chat-header-btn"><i class="fas fa-ellipsis-v"></i></div>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="messages" id="messages">
+                <div class="message received">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi" class="message-avatar">
+                    <div class="message-content">
+                        <div class="message-bubble">Hi! Are you available for the ₹500 cash exchange today?</div>
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                </div>
+                <div class="message sent">
+                    <div class="message-content">
+                        <div class="message-bubble">Yes, I'm free. Let's meet at 5 PM near the metro station</div>
+                        <div class="message-time">10:32 AM <i class="fas fa-check-double message-status"></i></div>
+                    </div>
+                </div>
+                <div class="message received">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi" class="message-avatar">
+                    <div class="message-content">
+                        <div class="message-bubble">Perfect! I'll bring the USD. What's your rate?</div>
+                        <div class="message-time">10:33 AM</div>
+                    </div>
+                </div>
+                <div class="message sent">
+                    <div class="message-content">
+                        <div class="message-bubble">₹82.50 per USD. That's 0.5% better than market rate</div>
+                        <div class="message-time">10:35 AM <i class="fas fa-check-double message-status"></i></div>
+                    </div>
+                </div>
+                <div class="message received">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi" class="message-avatar">
+                    <div class="message-content">
+                        <div class="message-bubble">Great! See you at 5 then. I'll message when I'm nearby</div>
+                        <div class="message-time">10:36 AM</div>
+                    </div>
+                </div>
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Message Input -->
+            <div class="message-input">
+                <div class="input-wrapper">
+                    <input type="text" placeholder="Type a message..." id="message-input">
+                    <div class="input-actions">
+                        <div class="input-btn"><i class="far fa-smile"></i></div>
+                        <div class="input-btn"><i class="fas fa-paperclip"></i></div>
+                    </div>
+                </div>
+                <div class="send-btn" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="scripts/chat.js"></script>
+</body>
+</html>

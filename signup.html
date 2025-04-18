@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Money Wala</title>
+    <link rel="stylesheet" href="styles/signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+            <h1 class="title" id="interactive-title"></h1>
+        </div>
+        <a href="money-wala.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to money-wala</a>
+    </header>
+
+    <!-- Sign-Up Section -->
+    <section class="signup-section">
+        <div class="signup-container">
+            <h2>Create Your Account</h2>
+            <p>Join Money Wala for seamless cash and digital exchanges</p>
+
+            <!-- Social Sign-Up Buttons -->
+            <div class="social-buttons">
+                <button id="google-signup" class="social-btn google"><i class="fab fa-google"></i> Sign Up with Google</button>
+                <button id="facebook-signup" class="social-btn facebook"><i class="fab fa-facebook-f"></i> Sign Up with Facebook</button>
+            </div>
+
+            <div class="divider">Or sign up with email</div>
+
+            <!-- Email Sign-Up Form -->
+            <form id="signup-form" class="signup-form">
+                <div class="input-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a password" required>
+                    <i class="fas fa-eye toggle-password" id="toggle-password"></i>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                    <i class="fas fa-eye toggle-password" id="toggle-confirm-password"></i>
+                </div>
+                <div class="terms">
+                    <label>
+                        <input type="checkbox" id="terms" required> I agree to the <a href="#">Terms & Conditions</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn-signup">Sign Up</button>
+            </form>
+
+            <p class="login-link">Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Money Wala. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase Compat SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // Initialize Firebase with your config
+        const firebaseConfig = {
+        apiKey: "AIzaSyAk-7v8sSnYSe_DSegU5SAfeHoE5ZEdYsU",
+        authDomain: "money-wala-9f96b.firebaseapp.com",
+        projectId: "money-wala-9f96b",
+        storageBucket: "money-wala-9f96b.firebasestorage.app",
+        messagingSenderId: "857060971333",
+        appId: "1:857060971333:web:1d6e6c8c7a5e017700e42c",
+        measurementId: "G-2TVQ7STTW9"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Google Sign-Up
+        document.getElementById('google-signup').addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log('Google Sign-Up Success:', user);
+
+                    fetch('http://localhost:3000/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            uid: user.uid,
+                            fullName: document.getElementById('full-name').value || user.displayName,
+                            phone: document.getElementById('phone').value || ''
+                        })
+                    })
+                    .then(response => response.text())
+                    .then(data => console.log('Backend Response:', data))
+                    .catch(error => console.error('Backend Error:', error));
+
+                    window.location.href = 'money-wala.html';
+                })
+                .catch((error) => {
+                    console.error('Google Sign-Up Error:', error.message);
+                    alert('Error: ' + error.message);
+                });
+        });
+
+        // Facebook Sign-Up
+        document.getElementById('facebook-signup').addEventListener('click', () => {
+            const provider = new firebase.auth.FacebookAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log('Facebook Sign-Up Success:', user);
+
+                    fetch('http://localhost:3000/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            uid: user.uid,
+                            fullName: document.getElementById('full-name').value || user.displayName,
+                            phone: document.getElementById('phone').value || ''
+                        })
+                    })
+                    .then(response => response.text())
+                    .then(data => console.log('Backend Response:', data))
+                    .catch(error => console.error('Backend Error:', error));
+
+                    window.location.href = 'money-wala.html';
+                })
+                .catch((error) => {
+                    console.error('Facebook Sign-Up Error:', error.message);
+                    alert('Error: ' + error.message);
+                });
+        });
+
+        // Email Sign-Up
+        const signupForm = document.getElementById('signup-form');
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('Email Sign-Up Success:', user);
+
+                    fetch('http://localhost:3000/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            uid: user.uid,
+                            fullName: document.getElementById('full-name').value,
+                            phone: document.getElementById('phone').value
+                        })
+                    })
+                    .then(response => response.text())
+                    .then(data => console.log('Backend Response:', data))
+                    .catch(error => console.error('Backend Error:', error));
+
+                    window.location.href = 'money-wala.html';
+                })
+                .catch((error) => {
+                    console.error('Email Sign-Up Error:', error.message);
+                    alert('Error: ' + error.message);
+                });
+        });
+
+        // Toggle Password Visibility
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordField = document.getElementById('password');
+        togglePassword.addEventListener('click', () => {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+
+        const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+        const confirmPasswordField = document.getElementById('confirm-password');
+        toggleConfirmPassword.addEventListener('click', () => {
+            const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordField.setAttribute('type', type);
+            toggleConfirmPassword.classList.toggle('fa-eye');
+            toggleConfirmPassword.classList.toggle('fa-eye-slash');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleElement = document.getElementById('interactive-title');
+            const titleText = 'Money Wala';
+            titleElement.innerHTML = '';
+            titleText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${index * 0.1}s`;
+                titleElement.appendChild(span);
+            });
+        });
+    </script>
+</body>
+</html>

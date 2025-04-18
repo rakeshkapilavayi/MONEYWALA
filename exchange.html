@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange - Money Wala</title>
+    <link rel="stylesheet" href="styles/exchange.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container" id="logo-toggle">
+            <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+            <h1 class="title" id="interactive-title"></h1>
+        </div>
+        <nav class="nav-menu">
+            <a href="money-wala.html" class="nav-item">Home</a>
+            <a href="exchange.html" class="nav-item">Exchange</a>
+            <span id="auth-link" class="nav-item btn-login">Sign Out</span>
+        </nav>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-item" data-section="overview"><i class="fas fa-home"></i> Overview</div>
+        <div class="sidebar-item active" id="exchange-link"><i class="fas fa-exchange-alt"></i> Exchange</div>
+        <div class="sidebar-item" data-section="wallet"><i class="fas fa-wallet"></i> <a href="wallet.html">Wallet</a></div>
+        <div class="sidebar-item" id="sign-out-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</div>
+    </div>
+
+    <!-- Exchange Section -->
+    <section class="exchange-section">
+        <div class="container">
+            <h2>Start Your Exchange</h2>
+            <p>Select your exchange type and find a nearby partner.</p>
+            <div class="exchange-options">
+                <div class="option-card">
+                    <h3>Cash to Digital</h3>
+                    <p>Exchange your cash for digital money.</p>
+                    <a href="cashTOupi.html" class="btn-primary">Start</a>
+                </div>
+                <div class="option-card">
+                    <h3>Digital to Cash</h3>
+                    <p>Exchange your digital money for cash.</p>
+                    <a href="upiTOcash.html" class="btn-primary">Start</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Money Wala. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase Compat SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script>
+        // Initialize Firebase with your config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAk-7v8sSnYSe_DSegU5SAfeHoE5ZEdYsU",
+            authDomain: "money-wala-9f96b.firebaseapp.com",
+            projectId: "money-wala-9f96b",
+            storageBucket: "money-wala-9f96b.firebasestorage.app",
+            messagingSenderId: "857060971333",
+            appId: "1:857060971333:web:1d6e6c8c7a5e017700e42c",
+            measurementId: "G-2TVQ7STTW9"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    
+        // Sidebar Toggle State
+        let isSidebarVisible = localStorage.getItem('isSidebarVisible') === 'true';
+    
+        // Function to set active sidebar item based on current page
+        function setActiveSidebarItem() {
+            const currentPage = window.location.pathname.split('/').pop() || 'money-wala.html'; // Default to homepage if no path closing tag for sidebar div was missing
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+    
+            sidebarItems.forEach(item => {
+                item.classList.remove('active'); // Remove active from all items
+    
+                const section = item.getAttribute('data-section');
+                const id = item.getAttribute('id');
+    
+                // Map sidebar items to their corresponding pages
+                if (currentPage === 'money-wala.html' && section === 'overview') {
+                    item.classList.add('active');
+                } else if (currentPage === 'exchange.html' && id === 'exchange-link') {
+                    item.classList.add('active');
+                } else if (currentPage === 'wallet.html' && section === 'wallet') {
+                    item.classList.add('active');
+                } else if (currentPage === 'notifications.html' && section === 'notifications') {
+                    item.classList.add('active');
+                }
+            });
+        }
+    
+        // Check Auth State
+        auth.onAuthStateChanged((user) => {
+            const authLink = document.getElementById('auth-link');
+            const sidebar = document.getElementById('sidebar');
+            if (user) {
+                authLink.textContent = 'Sign Out';
+                authLink.href = '#';
+                sidebar.classList.add('hidden');
+                if (isSidebarVisible) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('visible');
+                }
+                setActiveSidebarItem(); // Set active sidebar item when user is signed in
+    
+                authLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    auth.signOut()
+                        .then(() => {
+                            localStorage.setItem('isSidebarVisible', 'false');
+                            window.location.href = 'money-wala.html';
+                        })
+                        .catch((error) => alert('Error: ' + error.message));
+                });
+                document.getElementById('sign-out-btn').addEventListener('click', () => {
+                    auth.signOut().then(() => {
+                        localStorage.setItem('isSidebarVisible', 'false');
+                        window.location.href = 'money-wala.html';
+                    });
+                });
+            } else {
+                window.location.href = 'signup.html';
+            }
+        });
+    
+        // Logo Toggle for Sidebar
+        const logoToggle = document.getElementById('logo-toggle');
+        const sidebar = document.getElementById('sidebar');
+        logoToggle.addEventListener('click', () => {
+            if (auth.currentUser) {
+                if (isSidebarVisible) {
+                    sidebar.classList.remove('visible');
+                    sidebar.classList.add('hidden');
+                    isSidebarVisible = false;
+                } else {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('visible');
+                    isSidebarVisible = true;
+                }
+                localStorage.setItem('isSidebarVisible', isSidebarVisible);
+            }
+        });
+    
+        // Sidebar Navigation
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.id === 'sign-out-btn') return;
+    
+                const section = item.getAttribute('data-section');
+                const id = item.getAttribute('id');
+    
+                // Handle navigation to other pages
+                if (id === 'exchange-link') {
+                    window.location.href = 'exchange.html';
+                } else if (section === 'overview') {
+                    window.location.href = 'money-wala.html';
+                } else if (section === 'wallet') {
+                    window.location.href = 'wallet.html';
+                } else if (section === 'notifications') {
+                    window.location.href = 'notifications.html';
+                }
+            });
+        });
+    
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    
+        // Run on page load to set the active sidebar item
+        window.addEventListener('load', setActiveSidebarItem);
+
+        // Add to your existing JavaScript (e.g., scripts/notifications.js or new script)
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleElement = document.getElementById('interactive-title');
+            const titleText = 'Money Wala';
+            titleElement.innerHTML = ''; // Clear content
+
+            // Split text into spans
+            titleText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char; // Handle spaces
+                span.style.animationDelay = `${index * 0.1}s`; // Delay each character
+                titleElement.appendChild(span);
+            });
+        });
+    </script>
+</body>
+</html>

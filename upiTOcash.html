@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI to Cash Exchange - Money Wala</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="styles/upi_cash.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="box box-1"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+            <div class="box box-2"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+            <div class="box box-3"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+            <div class="box box-4"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden Until Logged In) -->
+    <div id="main-content" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container" id="logo-toggle">
+                <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+                <h1 class="title" id="interactive-title"></h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="money-wala.html" class="nav-item">Home</a>
+                <a href="exchange.html" class="nav-item">Exchange</a>
+                <span id="auth-link" class="nav-item btn-login">Sign Out</span>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <!-- Exchange Section -->
+        <section class="exchange-section">
+            <div class="container">
+                <h2>UPI to Cash Exchange</h2>
+                <p>Enter your city and search radius to find people nearby who can exchange your UPI balance for cash.</p>
+
+                <!-- Search Form -->
+                <form id="locationForm" class="search-form">
+                    <div class="input-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" class="form-control" placeholder="Enter your city" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="radius">Search Radius (km)</label>
+                        <input type="number" id="radius" class="form-control" placeholder="Enter distance radius" min="1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="money">Amount (₹)</label>
+                        <input type="number" id="money" class="form-control" placeholder="Enter amount" min="100" step="100" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Search</button>
+                </form>
+
+                <!-- Map -->
+                <div class="map-wrapper">
+                    <div id="map" class="map-container" style="display: none;"></div>
+                    <div id="map-loader" class="map-loader" style="display: none;">
+                        <div class="loader">
+                            <div class="box box-1"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+                            <div class="box box-2"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+                            <div class="box box-3"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+                            <div class="box box-4"><div class="side-left"></div><div class="side-right"></div><div class="side-top"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="results-container"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2025 Money Wala. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="scripts/upi_to_cash.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Money Wala</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="pictures/logo2.jpg" alt="Money Wala Logo" class="logo">
+            <h1 class="title" id="interactive-title"></h1>
+        </div>
+        <a href="money-wala.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to money-wala</a>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your Money Wala account</p>
+
+            <!-- Social Sign-In Buttons -->
+            <div class="social-buttons">
+                <button id="google-signin" class="social-btn google"><i class="fab fa-google"></i> Sign In with Google</button>
+                <button id="facebook-signin" class="social-btn facebook"><i class="fab fa-facebook-f"></i> Sign In with Facebook</button>
+            </div>
+
+            <div class="divider">Or sign in with email</div>
+
+            <!-- Email Sign-In Form -->
+            <form id="login-form" class="login-form">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye toggle-password" id="toggle-password"></i>
+                </div>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember"> Remember Me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+            </form>
+
+            <p class="signup-link">Don’t have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Money Wala. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Firebase Compat SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // Initialize Firebase with your config
+        const firebaseConfig = {
+        apiKey: "AIzaSyAk-7v8sSnYSe_DSegU5SAfeHoE5ZEdYsU",
+        authDomain: "money-wala-9f96b.firebaseapp.com",
+        projectId: "money-wala-9f96b",
+        storageBucket: "money-wala-9f96b.firebasestorage.app",
+        messagingSenderId: "857060971333",
+        appId: "1:857060971333:web:1d6e6c8c7a5e017700e42c",
+        measurementId: "G-2TVQ7STTW9"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        // Google Sign-In
+        document.getElementById('google-signin').addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log('Google Sign-In Success:', user);
+                    window.location.href = 'money-wala.html';
+                })
+                .catch((error) => {
+                    console.error('Google Sign-In Error:', error.message);
+                    alert('Error: ' + error.message);
+                });
+        });
+
+        // Facebook Sign-In
+        document.getElementById('facebook-signin').addEventListener('click', () => {
+            const provider = new firebase.auth.FacebookAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log('Facebook Sign-In Success:', user);
+                    window.location.href = 'money-wala.html';
+                })
+                .catch((error) => {
+                    console.error('Facebook Sign-In Error:', error.message);
+                    alert('Error: ' + error.message);
+                });
+        });
+
+        // Email Sign-In
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('Email Sign-In Success:', user);
+                    window.location.href = 'money-wala.html';
+                })
+                .catch((error) => {
+                    console.error('Email Sign-In Error:', error.code, error.message);
+                    if (error.code === 'auth/invalid-login-credentials') {
+                        alert('Invalid email or password. Please check your credentials and try again.');
+                    } else {
+                        alert('Error: ' + error.message);
+                    }
+                });
+        });
+
+        // Toggle Password Visibility
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordField = document.getElementById('password');
+        togglePassword.addEventListener('click', () => {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+
+        // Forgot Password
+        document.querySelector('.forgot-password').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert('Please enter your email first.');
+                return;
+            }
+            firebase.auth().sendPasswordResetEmail(email)
+                .then(() => {
+                    alert('Password reset email sent! Check your inbox.');
+                })
+                .catch((error) => {
+                    console.error('Password Reset Error:', error.message);
+                    alert('Error: ' + error.message);
+                });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleElement = document.getElementById('interactive-title');
+            const titleText = 'Money Wala';
+            titleElement.innerHTML = '';
+            titleText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${index * 0.1}s`;
+                titleElement.appendChild(span);
+            });
+        });
+    </script>
+</body>
+</html>
