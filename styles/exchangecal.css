@@ -1,0 +1,44 @@
+.exchange-calculator-section {
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.exchange-calculator-section h2 {
+    font-size: 28px;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+
+.calculator-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1a73e8;
+}

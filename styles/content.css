@@ -1,0 +1,111 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Light background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.form-container {
+  width: 350px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-control {
+  width: 325px;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+}
+
+.form-control::placeholder {
+  color: #777;
+  font-style: italic;
+}
+
+.form-control:hover {
+  border-color: #007bff;
+  background-color: #eef6ff;
+  transform: scale(1.02);
+}
+
+button.styled-button {
+  background-color: #007bff;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  color:rgb(79, 77, 77);
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-left: 140px;
+}
+
+button.styled-button:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Suggestions Container */
+.state-suggestions, .city-suggestions {
+  max-height: 200px; /* Limit the height of the dropdown */
+  overflow-y: auto; /* Add scroll if content exceeds height */
+  position: absolute; /* Absolute positioning */
+  background-color: #ffffff; /* White background */
+  z-index: 1000; /* Ensure it's above other elements */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Individual Suggestion Items */
+.suggestion-item {
+  padding: 10px; /* Space inside each item */
+  font-size: 14px; /* Comfortable text size */
+  color: #333; /* Neutral text color */
+  cursor: pointer; /* Pointer cursor for clickable items */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+  width: 345px;
+}
+
+/* Hover Effect */
+.suggestion-item:hover {
+  background-color: #007bff; /* Highlight color */
+  color: #ffffff; /* White text for contrast */
+}
+
+/* Active or Selected Suggestion (Optional) */
+.suggestion-item.active {
+  background-color: #0056b3; /* Darker blue for active state */
+  color: #ffffff; /* White text for active state */
+}
+
+/* No Suggestions Message (Optional) */
+.no-suggestions {
+  padding: 10px;
+  font-size: 14px;
+  color: #999; /* Light gray for no suggestions */
+  text-align: center;
+}
+
+#map {
+  width: 50%;
+  height: 400px;
+  margin-top: 20px;
+}
